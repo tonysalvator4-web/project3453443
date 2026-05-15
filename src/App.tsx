@@ -48,7 +48,7 @@ export default function App() {
         <div className="relative z-10 flex flex-col items-center text-center">
           <div className="logo-pulse-ring" />
           <img
-            src="/5e93d3ec-2561-49d8-97ba-254902fa16b6.png"
+            src="/logo.png"
             alt="Hantavirus World Order"
             className="logo-img relative z-10 w-60 md:w-80 lg:w-96 mb-8 select-none"
           />
@@ -134,14 +134,12 @@ export default function App() {
           <div className="section-label">CONNECT // SPREAD THE VIRUS</div>
           <h2 className="section-title">JOIN THE <span className="text-red-500">NETWORK</span></h2>
           <p className="text-gray-500 text-sm mt-4 mb-12 tracking-wide">Every follower is a new host. Every share is a new infection vector.</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              { label: 'Telegram', icon: '✈', handle: '@HWO_Official' },
-              { label: 'Twitter/X', icon: '✕', handle: '@HantavirusWO' },
-              { label: 'Discord', icon: '◈', handle: 'HWO Server' },
-              { label: 'DexTools', icon: '◉', handle: 'View Chart' },
+              { label: 'Telegram', icon: '✈', handle: '@HWO_Official', href: 'https://t.me/HWO_Official' },
+              { label: 'Discord', icon: '◈', handle: 'HWO Server', href: 'https://discord.gg/eXnkVmbh' },
             ].map((s) => (
-              <a key={s.label} href="#" className="social-card group">
+              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="social-card group">
                 <div className="text-3xl mb-3 group-hover:text-red-400 transition-colors duration-300">{s.icon}</div>
                 <div className="text-white font-bold text-xs tracking-widest uppercase">{s.label}</div>
                 <div className="text-gray-600 text-xs mt-1">{s.handle}</div>
