@@ -48,7 +48,7 @@ export default function App() {
         <div className="relative z-10 flex flex-col items-center text-center">
           <div className="logo-pulse-ring" />
           <img
-            src="/logo.png"
+            src="https://raw.githubusercontent.com/tonysalvator4-web/project3453443/bbc93c39b8e4c0a9e470735ffdcb8974123d9ba6/logo.png"
             alt="Hantavirus World Order"
             className="logo-img relative z-10 w-60 md:w-80 lg:w-96 mb-8 select-none"
           />
