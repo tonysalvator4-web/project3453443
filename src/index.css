@@ -1,0 +1,554 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --red-glow: #dc2626;
+  --red-dark: #7f1d1d;
+  --red-mid: #991b1b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #000;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* ===================== MARQUEE ===================== */
+.marquee-track {
+  display: flex;
+  overflow: hidden;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* ===================== HERO ===================== */
+.hero-title {
+  font-family: 'Orbitron', monospace;
+  text-shadow: 0 0 30px rgba(220,38,38,0.4), 0 0 60px rgba(220,38,38,0.15);
+  letter-spacing: 0.15em;
+}
+
+/* ===================== LOGO ===================== */
+.logo-pulse-ring {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  border: 1px solid rgba(220,38,38,0.15);
+  animation: logoRingPulse 3s ease-in-out infinite;
+  z-index: 0;
+}
+
+.logo-pulse-ring::before,
+.logo-pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 1px solid rgba(220,38,38,0.08);
+  animation: logoRingPulse 3s ease-in-out infinite 0.6s;
+}
+
+.logo-pulse-ring::after {
+  inset: -40px;
+  animation-delay: 1.2s;
+}
+
+@keyframes logoRingPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 0.2; }
+}
+
+.logo-img {
+  filter: drop-shadow(0 0 20px rgba(220,38,38,0.5)) drop-shadow(0 0 60px rgba(220,38,38,0.2));
+  animation: logoFloat 6s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ===================== JOIN BUTTON ===================== */
+.join-btn {
+  background: transparent;
+  border: 2px solid var(--red-glow);
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.join-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(220,38,38,0.8), rgba(127,29,29,0.8));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.join-btn:hover::before {
+  opacity: 1;
+}
+
+.join-btn:hover {
+  box-shadow: 0 0 20px rgba(220,38,38,0.6), 0 0 40px rgba(220,38,38,0.3);
+  transform: translateY(-2px);
+}
+
+.join-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===================== COUNTDOWN ===================== */
+.countdown-container {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.countdown-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  color: #ef4444;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.countdown-grid {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown-unit {
+  text-align: center;
+  padding: 0.75rem 1.25rem;
+  background: rgba(127,29,29,0.15);
+  border: 1px solid rgba(220,38,38,0.3);
+  min-width: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.countdown-unit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(220,38,38,0.6), transparent);
+}
+
+.countdown-digit {
+  font-family: 'Orbitron', monospace;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #dc2626;
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(220,38,38,0.8);
+}
+
+@media (max-width: 640px) {
+  .countdown-digit { font-size: 1.8rem; }
+  .countdown-unit { min-width: 60px; padding: 0.5rem 0.75rem; }
+}
+
+.countdown-unit-label {
+  font-size: 0.6rem;
+  color: #6b7280;
+  letter-spacing: 0.2em;
+  margin-top: 0.25rem;
+}
+
+.countdown-sep {
+  font-size: 2rem;
+  color: #7f1d1d;
+  font-weight: bold;
+  padding: 0 0.25rem;
+  margin-bottom: 1.2rem;
+}
+
+.countdown-sublabel {
+  font-size: 0.65rem;
+  color: #6b7280;
+  letter-spacing: 0.3em;
+  margin-top: 0.75rem;
+  text-transform: uppercase;
+}
+
+@keyframes pulseRed {
+  0%, 100% { text-shadow: 0 0 10px rgba(220,38,38,0.8); }
+  50% { text-shadow: 0 0 30px rgba(220,38,38,1), 0 0 60px rgba(220,38,38,0.5); }
+}
+
+.animate-pulse-red {
+  animation: pulseRed 1s ease-in-out infinite;
+}
+
+/* ===================== INFECTION COUNTER ===================== */
+.infection-counter {
+  width: 100%;
+  max-width: 480px;
+}
+
+.infection-counter-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(127,29,29,0.1);
+  border: 1px solid rgba(220,38,38,0.25);
+  padding: 1rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.infection-counter-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(220,38,38,0.04), transparent);
+  animation: scanline 3s linear infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.infection-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #dc2626;
+  flex-shrink: 0;
+  animation: dotPulse 1s ease-in-out infinite;
+  box-shadow: 0 0 8px #dc2626;
+}
+
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+}
+
+.infection-label {
+  font-size: 0.6rem;
+  color: #ef4444;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.infection-number {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.1em;
+}
+
+.infection-sublabel {
+  font-size: 0.6rem;
+  color: #6b7280;
+  letter-spacing: 0.1em;
+}
+
+/* ===================== SECTION DIVIDER ===================== */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(220,38,38,0.4), transparent);
+  position: relative;
+  margin: 2rem 0;
+}
+
+.section-divider::before {
+  content: '☣';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #000;
+  color: #7f1d1d;
+  padding: 0 1rem;
+  font-size: 1.2rem;
+}
+
+/* ===================== SECTION LABELS ===================== */
+.section-label {
+  font-size: 0.65rem;
+  color: #dc2626;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .section-title { font-size: 2.5rem; }
+}
+
+/* ===================== INFO CARDS ===================== */
+.info-card {
+  background: rgba(10,0,0,0.6);
+  border: 1px solid rgba(220,38,38,0.2);
+  padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.info-card:hover {
+  border-color: rgba(220,38,38,0.5);
+  transform: translateY(-4px);
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(220,38,38,0.6), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+.info-card:hover::before {
+  transform: translateX(0);
+}
+
+/* ===================== STAT CARDS ===================== */
+.stat-card {
+  background: rgba(10,0,0,0.7);
+  border: 1px solid rgba(220,38,38,0.2);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+  border-color: rgba(220,38,38,0.5);
+  box-shadow: 0 0 20px rgba(220,38,38,0.1);
+}
+
+.stat-value {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #dc2626;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.6rem;
+  color: #9ca3af;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+.stat-sub {
+  font-size: 0.6rem;
+  color: #4b5563;
+  margin-top: 0.25rem;
+}
+
+/* ===================== ALLOC CARD ===================== */
+.alloc-card {
+  background: rgba(10,0,0,0.6);
+  border: 1px solid rgba(220,38,38,0.2);
+  padding: 1.75rem;
+}
+
+/* ===================== ROADMAP ===================== */
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .roadmap-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .roadmap-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.roadmap-card {
+  background: rgba(10,0,0,0.7);
+  border: 1px solid rgba(220,38,38,0.15);
+  padding: 1.5rem;
+  position: relative;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.roadmap-card:hover {
+  border-color: rgba(220,38,38,0.4);
+  transform: translateY(-4px);
+}
+
+.roadmap-card--active {
+  border-color: rgba(220,38,38,0.5);
+  background: rgba(127,29,29,0.1);
+}
+
+.roadmap-card--active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #dc2626, transparent);
+}
+
+.roadmap-phase-label {
+  font-size: 0.6rem;
+  color: #6b7280;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.roadmap-status {
+  display: inline-block;
+  font-size: 0.55rem;
+  font-weight: bold;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  margin-bottom: 0.75rem;
+  border-radius: 2px;
+}
+
+.roadmap-status--infected {
+  background: rgba(220,38,38,0.2);
+  color: #f87171;
+  border: 1px solid rgba(220,38,38,0.4);
+}
+
+.roadmap-status--spreading {
+  background: rgba(180,30,30,0.15);
+  color: #fca5a5;
+  border: 1px solid rgba(180,30,30,0.3);
+}
+
+.roadmap-status--incoming {
+  background: rgba(100,10,10,0.2);
+  color: #9ca3af;
+  border: 1px solid rgba(100,10,10,0.4);
+}
+
+.roadmap-status--classified {
+  background: rgba(30,30,30,0.4);
+  color: #4b5563;
+  border: 1px solid rgba(50,50,50,0.5);
+}
+
+.roadmap-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.roadmap-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.roadmap-item {
+  font-size: 0.7rem;
+  color: #6b7280;
+  line-height: 1.4;
+  padding-left: 0;
+}
+
+.roadmap-card--active .roadmap-item {
+  color: #9ca3af;
+}
+
+/* ===================== SOCIAL CARDS ===================== */
+.social-card {
+  background: rgba(10,0,0,0.7);
+  border: 1px solid rgba(220,38,38,0.15);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.social-card:hover {
+  border-color: rgba(220,38,38,0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(220,38,38,0.1);
+}
+
+/* ===================== SCROLLBAR ===================== */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7f1d1d;
+}
+
+/* ===================== SELECTION ===================== */
+::selection {
+  background: rgba(220,38,38,0.3);
+  color: #fff;
+}
